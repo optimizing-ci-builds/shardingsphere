@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-name: CI
+name: CI with Code Coverage ++++++++++
 
 on:
   push:
@@ -79,7 +79,6 @@ jobs:
         run: ./mvnw -T1C -B -f examples/pom.xml clean package -DskipTests
 
   test-coverage:
-    if: github.repository == 'apache/shardingsphere'
     name: Test coverage report
     runs-on: ubuntu-latest
     steps:
@@ -97,5 +96,3 @@ jobs:
           java-version: 8
       - name: Test with Maven
         run: ./mvnw -T1C -B -ntp clean install cobertura:cobertura -Djacoco.skip=false
-      - name: Upload to Codecov
-        run: bash <(curl -s https://codecov.io/bash)
